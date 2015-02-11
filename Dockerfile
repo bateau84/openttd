@@ -17,10 +17,10 @@ RUN apt-get install wget libfontconfig1 libfreetype6 libicu52 liblzo2-2 libsdl1.
 
 # Download openttd installer 
 WORKDIR /tmp/
-RUN wget -q http://binaries.openttd.org/releases/1.5.0-beta1/openttd-1.5.0-beta1-linux-ubuntu-trusty-amd64.deb  
+RUN wget -q http://binaries.openttd.org/releases/1.4.4/openttd-1.4.4-linux-ubuntu-trusty-amd64.deb 
 
 # Install openttd 
-RUN dpkg -i /tmp/openttd-1.5.0-beta1-linux-ubuntu-trusty-amd64.deb
+RUN dpkg -i /tmp/openttd-1.4.4-linux-ubuntu-trusty-amd64.deb
 RUN rm -rf /tmp/openttd-*.*
 
 # Add files
