@@ -25,7 +25,6 @@ RUN rm -rf /tmp/openttd-*.*
 
 # Add files
 ADD files/start.sh /home/openttd/
-ADD files/pre_dedicated.scr /usr/share/games/openttd/scripts/
 
 RUN chmod +x /home/openttd/start.sh
 
