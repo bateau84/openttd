@@ -7,7 +7,7 @@
 FROM ubuntu:14.04
 
 # File Author / Maintainer
-MAINTAINER Bateau
+MAINTAINER bateau84
 
 # Update the repository sources list
 ENV DEBIAN_FRONTEND noninteractive
