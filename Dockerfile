@@ -38,7 +38,8 @@ WORKDIR /home/openttd/.openttd/
 ##################### INSTALLATION END #####################
 
 # Expose the default port
-EXPOSE 3979
+EXPOSE 3979/tcp
+EXPOSE 3979/udp
 
 # Set default container command
 CMD ["/bin/sh", "../start.sh"]
