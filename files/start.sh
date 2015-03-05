@@ -1,8 +1,6 @@
-#/bin/bash
-loadgame=${loadgame=false}
-savename=${savename="save/autosave/exit.sav"}
+#/bin/sh
 
-if [[ $loadgame = true ]]; then
+if [ $loadgame = true ]; then
 	echo "We are loading a save game!"
 		echo "Lets load $savename"
 		/usr/games/openttd -D -g "save/autosave/exit.sav" -x

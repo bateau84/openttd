@@ -11,6 +11,9 @@ MAINTAINER bateau84
 
 # Update the repository sources list
 ENV DEBIAN_FRONTEND noninteractive
+ENV loadgame false
+ENV savename save/autosave/exit.sav
+
 RUN apt-get update
 RUN apt-get install wget libfontconfig1 libfreetype6 libicu52 liblzo2-2 libsdl1.2debian -yq
 ################## BEGIN INSTALLATION ######################
@@ -29,11 +32,11 @@ ADD files/start.sh /home/openttd/
 RUN chmod +x /home/openttd/start.sh
 
 #create user
-RUN useradd -U -c openttd -d /home/openttd openttd
-RUN mkdir /home/openttd/.openttd
-RUN chown openttd:openttd /home/openttd -R
+#RUN useradd -U -c openttd -d /home/openttd openttd
+#RUN mkdir /home/openttd/.openttd
+#RUN chown openttd:openttd /home/openttd -R
 
-USER openttd
+#USER openttd
 WORKDIR /home/openttd/.openttd/
 ##################### INSTALLATION END #####################
 
@@ -42,4 +45,4 @@ EXPOSE 3979/tcp
 EXPOSE 3979/udp
 
 # Set default container command
-CMD ["/bin/sh", "../start.sh"]
+CMD ["/bin/sh", "/home/openttd/start.sh"]
