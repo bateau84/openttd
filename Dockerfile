@@ -31,12 +31,6 @@ ADD files/start.sh /home/openttd/
 
 RUN chmod +x /home/openttd/start.sh
 
-#create user
-#RUN useradd -U -c openttd -d /home/openttd openttd
-#RUN mkdir /home/openttd/.openttd
-#RUN chown openttd:openttd /home/openttd -R
-
-#USER openttd
 WORKDIR /home/openttd/.openttd/
 ##################### INSTALLATION END #####################
 
