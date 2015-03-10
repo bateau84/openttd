@@ -22,7 +22,7 @@ RUN wget -q http://binaries.openttd.org/releases/1.4.4/openttd-1.4.4-linux-ubunt
 
 # Get GFX and unzip the files
 WORKDIR /usr/share/games/openttd/baseset/
-RUN wget -q http://binaries.openttd.org/extra/opengfx/0.5.0/opengfx-0.5.0-all.zip && unzip opengfx-0.5.0-all.zip && rm opengfx-0.5.0-all.zip
+RUN wget -q http://binaries.openttd.org/extra/opengfx/0.5.0/opengfx-0.5.0-all.zip && unzip opengfx-0.5.0-all.zip && rm opengfx-0.5.0-all.zip && tar -xf opengfx-0.5.0.tar
 
 # Add startup file and cleanup file
 ADD files/start.sh /root/
