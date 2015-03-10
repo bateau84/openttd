@@ -1,10 +1,10 @@
 ############################################################
 # Dockerfile to build OpenTTD container images
-# Based on Ubuntu
+# Based on debian:jessie
 ############################################################
 
-# Set the base image to Ubuntu
-FROM ubuntu:14.04
+# Set the base image to debian:jessie
+FROM debian:jessie
 
 # File Author / Maintainer
 MAINTAINER Mats Bergmann <bateau@sea-shell.org>
