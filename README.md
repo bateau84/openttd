@@ -1,3 +1,5 @@
+These images have been built and tested on docker 1.5.0. Previous versions may not run as smooth.
+
 ## Usage ##
 
     docker run -d -p 3979:3979/tcp -p 3979:3979/udp bateau/openttd:latest
