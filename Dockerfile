@@ -18,7 +18,7 @@ RUN apt-get update -qq && apt-get install wget unzip libfontconfig1 libfreetype6
 
 # Download and install openttd
 WORKDIR /tmp/
-RUN wget -q http://binaries.openttd.org/releases/1.5.0-RC1/openttd-1.5.0-RC1-linux-ubuntu-trusty-amd64.deb && dpkg -i /tmp/openttd-1.5.0-RC1-linux-ubuntu-trusty-amd64.deb
+RUN wget -q http://binaries.openttd.org/releases/1.4.4/openttd-1.4.4-linux-ubuntu-trusty-amd64.deb && dpkg -i /tmp/openttd-1.4.4-linux-ubuntu-trusty-amd64.deb
 
 # Get GFX and unzip the files
 WORKDIR /usr/share/games/openttd/baseset/
