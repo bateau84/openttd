@@ -33,6 +33,7 @@ For example to run server and load my savegame game.sav:
     docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/username/.openttd:/root/.openttd -e "loadgame=true" -e "savename=save/game.sav" bateau/openttd:latest
 
 ## Other tags ##
+   * 1.5.0
    * 1.4.4
    * 1.5.0-rc1
    * 1.5.0-beta2
