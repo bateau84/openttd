@@ -14,11 +14,11 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV loadgame false
 ENV savename save/autosave/exit.sav
 
-RUN apt-get update -qq && apt-get install wget unzip libfontconfig1 libfreetype6 libicu52 liblzo2-2 libsdl1.2debian -y -qq
+RUN apt-get update -qq && apt-get install wget unzip libfontconfig1 libfreetype6 libicu52 liblzo2-2 libsdl1.2debian screen -y -qq
 
 # Download and install openttd
 WORKDIR /tmp/
-RUN wget -q http://binaries.openttd.org/releases/1.5.0/openttd-1.5.0-linux-ubuntu-trusty-amd64.deb && dpkg -i /tmp/openttd-1.4.4-linux-ubuntu-trusty-amd64.deb
+RUN wget -q http://binaries.openttd.org/releases/1.5.0/openttd-1.5.0-linux-ubuntu-trusty-amd64.deb && dpkg -i /tmp/openttd-1.5.0-linux-ubuntu-trusty-amd64.deb
 
 # Get GFX and unzip the files
 WORKDIR /usr/share/games/openttd/baseset/
