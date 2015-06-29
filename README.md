@@ -2,7 +2,7 @@ These images have been built and tested on docker 1.5.0. Previous versions may n
 
 ## Usage ##
 
-    docker run -d -p 3979:3979/tcp -p 3979:3979/udp bateau/openttd:1.5.0
+    docker run -d -p 3979:3979/tcp -p 3979:3979/udp bateau/openttd:latest
 
 For random port assignment replace
 
@@ -16,7 +16,7 @@ Its set up to not load any games by default (new game) and it can be run without
 
 Set 
 
-    -e "loadgame=true" 
+    -e "loadgame=exit" 
 
 to enable loading of save/autosave/exit.sav. 
 
@@ -30,9 +30,10 @@ To mount up your .openttd folder use
 
 For example to run server and load my savegame game.sav:
 
-    docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/username/.openttd:/root/.openttd -e "loadgame=true" -e "savename=save/game.sav" bateau/openttd:1.5.0
+    docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/username/.openttd:/root/.openttd -e "loadgame=true" -e "savename=save/game.sav" bateau/openttd:latest
 
 ## Other tags ##
+   * 1.5.1
    * 1.5.0
    * 1.4.4
    * 1.5.0-rc1
