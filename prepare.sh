@@ -13,7 +13,7 @@ sed -i 's/^#\s*\(deb.*restricted\)$/\1/g' /etc/apt/sources.list
 apt-get update
 
 ## Install things we need
-$minimal_apt_get_install wget unzip libfontconfig1 libfreetype6 libicu52 liblzo2-2 libsdl1.2debian screen
+$minimal_apt_get_install wget unzip libfontconfig1 libfreetype6 libicu52 liblzo2-2 libsdl1.2debian
 
 ## Download and install openttd
 wget -q http://binaries.openttd.org/releases/1.5.1/openttd-1.5.1-linux-ubuntu-trusty-amd64.deb

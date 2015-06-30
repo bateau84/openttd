@@ -1,4 +1,4 @@
-These images have been built and tested on docker 1.5.0. Previous versions may not run as smooth.
+These images have been built and tested on docker 1.6.2. Previous versions may not run as smooth.
 
 ## Usage ##
 
