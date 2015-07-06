@@ -12,7 +12,7 @@ MAINTAINER Mats Bergmann <bateau@sea-shell.org>
 # Update the repository sources list
 ENV DEBIAN_FRONTEND noninteractive
 ENV loadgame false
-ENV savename save/autosave/exit.sav
+ENV savename autosave/exit.sav
 
 WORKDIR /tmp/
 ADD . /tmp/
