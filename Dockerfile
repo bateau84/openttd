@@ -11,6 +11,7 @@ MAINTAINER Mats Bergmann <bateau@sea-shell.org>
 
 # Update the repository sources list
 ENV DEBIAN_FRONTEND noninteractive
+ENV DEBUG 0
 ENV loadgame false
 ENV savename autosave/exit.sav
 
@@ -19,6 +20,8 @@ ADD . /tmp/
 RUN /tmp/prepare.sh && \
     /tmp/system_services.sh && \
     /tmp/cleanup.sh
+
+VOLUME /home/openttd/.openttd
 
 # Expose the default ports
 EXPOSE 3979/tcp
