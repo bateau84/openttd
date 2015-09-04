@@ -1,3 +1,7 @@
 export LC_ALL=C
 export DEBIAN_FRONTEND=noninteractive
+export DEBUG=0
+export loadgame=false
+export savename=autosave/exit.sav
+
 minimal_apt_get_install='apt-get install -y --no-install-recommends'

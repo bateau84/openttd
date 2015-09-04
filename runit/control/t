@@ -12,7 +12,7 @@ fi
 
 if `kill -3 $PID`; then
         echo "Success!"
-	while `/bin/ps -axg | grep -v grep | grep /usr/games/openttd > /dev/null`; do echo "wait for openttd" sleep 1; done
+	while `/bin/ps -axg | grep -v grep | grep /usr/games/openttd > /dev/null`; do echo "wait for openttd" sleep 5; done
         exit 0
 else
         echo "Fail! $?"

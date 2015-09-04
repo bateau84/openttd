@@ -4,7 +4,7 @@ set -x
 
 apt-get remove -y unzip wget
 apt-get autoremove -y
-apt-get clean
+apt-get autoclean -y
 
 rm -rf /tmp/* /var/tmp/*
 rm -rf /var/lib/apt/lists/*

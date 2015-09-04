@@ -1,19 +1,11 @@
 ############################################################
 # Dockerfile to build OpenTTD container images
-# Based on debian:jessie
+# Based on phusion:baseimage (from ubuntu)
 ############################################################
 
-# Set the base image to debian:jessie
 FROM phusion/baseimage
 
-# File Author / Maintainer
 MAINTAINER Mats Bergmann <bateau@sea-shell.org>
-
-# Update the repository sources list
-ENV DEBIAN_FRONTEND noninteractive
-ENV DEBUG 0
-ENV loadgame false
-ENV savename autosave/exit.sav
 
 WORKDIR /tmp/
 ADD . /tmp/
@@ -23,7 +15,6 @@ RUN /tmp/prepare.sh && \
 
 VOLUME /home/openttd/.openttd
 
-# Expose the default ports
 EXPOSE 3979/tcp
 EXPOSE 3979/udp
 
