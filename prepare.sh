@@ -16,8 +16,8 @@ apt-get update
 $minimal_apt_get_install wget unzip libfontconfig1 libfreetype6 libicu52 liblzo2-2 libsdl1.2debian
 
 ## Download and install openttd
-wget -q http://binaries.openttd.org/releases/1.5.1/openttd-1.5.1-linux-ubuntu-trusty-amd64.deb
-dpkg -i openttd-1.5.1-linux-ubuntu-trusty-amd64.deb
+wget -q http://binaries.openttd.org/releases/1.5.2/openttd-1.5.2-linux-ubuntu-trusty-amd64.deb
+dpkg -i openttd-1.5.2-linux-ubuntu-trusty-amd64.deb
 mkdir -p /etc/service/openttd/
 
 ## Download GFX and install
