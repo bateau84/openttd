@@ -15,6 +15,12 @@ apt-get update
 ## Install things we need
 $minimal_apt_get_install wget unzip libfontconfig1 libfreetype6 libicu52 liblzo2-2 libsdl1.2debian
 
+## Create user
+mkdir -p /home/openttd/.openttd
+useradd -M -d /home/openttd -u 911 -U -s /bin/false openttd
+usermod -G users openttd
+chown openttd:openttd /home/openttd -R
+
 ## Download and install openttd
 wget -q http://binaries.openttd.org/releases/1.5.2/openttd-1.5.2-linux-ubuntu-trusty-amd64.deb
 dpkg -i openttd-1.5.2-linux-ubuntu-trusty-amd64.deb
