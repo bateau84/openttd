@@ -22,6 +22,11 @@ Set
 to enable loading of save/autosave/exit.sav.
 For Openttd to save on exit you need to set "autosave_on_exit = true" in your openttd.cfg file under the [gui] section.
 
+Set UID og GID of user in container to be the same as your user outside with seting env PUID and PGID.
+For example
+
+    -e PUID=1001 -e PGID=1000
+
 For other save games use 
 
     -e "loadgame=true" -e "savename=your/save/game.sav"
@@ -32,7 +37,7 @@ To mount up your .openttd folder use
 
 For example to run server and load my savegame game.sav:
 
-    docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/username/.openttd:/root/.openttd -e "loadgame=true" -e "savename=game.sav" bateau/openttd:latest
+    docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/username/.openttd:/root/.openttd -e PUID=1001 -e PGID=1000 -e "loadgame=true" -e "savename=game.sav" bateau/openttd:latest
 
 ## Other tags ##
    * 1.5.2
