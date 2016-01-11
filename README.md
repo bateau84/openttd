@@ -1,4 +1,4 @@
-These images have been built and tested on docker 1.7.1. Previous versions may not run as smooth.
+These images have been built and tested on docker 1.9.1. Previous versions may not run as smooth.
 
 ## Usage ##
 
@@ -40,6 +40,7 @@ For example to run server and load my savegame game.sav:
     docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/username/.openttd:/root/.openttd -e PUID=1001 -e PGID=1000 -e "loadgame=true" -e "savename=game.sav" bateau/openttd:latest
 
 ## Other tags ##
+   * 1.5.3
    * 1.5.2
    * 1.5.1
    * 1.5.0

@@ -22,8 +22,8 @@ usermod -G users openttd
 chown openttd:openttd /home/openttd -R
 
 ## Download and install openttd
-wget -q http://binaries.openttd.org/releases/1.5.2/openttd-1.5.2-linux-ubuntu-trusty-amd64.deb
-dpkg -i openttd-1.5.2-linux-ubuntu-trusty-amd64.deb
+wget -q http://binaries.openttd.org/releases/1.5.3/openttd-1.5.3-linux-ubuntu-trusty-amd64.deb
+dpkg -i openttd-1.5.3-linux-ubuntu-trusty-amd64.deb
 mkdir -p /etc/service/openttd/
 
 ## Download GFX and install
