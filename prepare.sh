@@ -22,14 +22,14 @@ usermod -G users openttd
 chown openttd:openttd /home/openttd -R
 
 ## Download and install openttd
-wget -q http://binaries.openttd.org/releases/1.5.3/openttd-1.5.3-linux-ubuntu-trusty-amd64.deb
-dpkg -i openttd-1.5.3-linux-ubuntu-trusty-amd64.deb
+wget -q http://binaries.openttd.org/releases/${OPENTTD_VERSION}/openttd-${OPENTTD_VERSION}-linux-ubuntu-trusty-amd64.deb
+dpkg -i openttd-${OPENTTD_VERSION}-linux-ubuntu-trusty-amd64.deb
 mkdir -p /etc/service/openttd/
 
 ## Download GFX and install
 mkdir -p /usr/share/games/openttd/baseset/
 cd /usr/share/games/openttd/baseset/
-wget -q http://binaries.openttd.org/extra/opengfx/0.5.2/opengfx-0.5.2-all.zip
-unzip opengfx-0.5.2-all.zip
-tar -xf opengfx-0.5.2.tar
-rm -rf opengfx-0.5.2-all.zip opengfx-0.5.2.tar
+wget -q http://binaries.openttd.org/extra/opengfx/${OPENGFX_VERSION}/opengfx-${OPENGFX_VERSION}-all.zip
+unzip opengfx-${OPENGFX_VERSION}-all.zip
+tar -xf opengfx-${OPENGFX_VERSION}.tar
+rm -rf opengfx-*.tar opengfx-*.zip
