@@ -24,6 +24,19 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
                         exec /sbin/setuser openttd /usr/games/openttd -D -x -d ${DEBUG}
                         exit 0
                 ;;
+                'last-autosave')
+
+			savegame=${savepath}/autosave/`ls -rt ${savepath}/autosave/ | tail -n1`
+
+			if [ -r ${savegame} ]; then
+	                        echo "Loading ${savegame}"
+        	                exec /sbin/setuser openttd /usr/games/openttd -D -g ${savegame} -x -d ${DEBUG}
+                	        exit 0
+			else
+				echo "${savegame} not found..."
+				exit 1
+			fi
+                ;;
                 'exit')
 
 			savegame="${savepath}/autosave/exit.sav"
