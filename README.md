@@ -1,4 +1,4 @@
-These images have been built and tested on docker 1.7.1. Previous versions may not run as smooth.
+These images have been built and tested on docker 1.9.1. Previous versions may not run as smooth.
 
 ## Usage ##
 
@@ -31,15 +31,16 @@ For other save games use
 
     -e "loadgame=true" -e "savename=your/save/game.sav"
 
-To mount up your .openttd folder use 
+Config files is located under /home/openttd/.openttd. To mount up your .openttd folder use 
 
-   -v /path/to/your/.openttd:/root/.openttd
+   -v /path/to/your/.openttd:/home/openttd/.openttd
 
 For example to run server and load my savegame game.sav:
 
-    docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/username/.openttd:/root/.openttd -e PUID=1001 -e PGID=1000 -e "loadgame=true" -e "savename=game.sav" bateau/openttd:latest
+    docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/<your_username>/.openttd:/home/openttd/.openttd -e PUID=<your_userid> -e PGID=<your_groupid> -e "loadgame=true" -e "savename=game.sav" bateau/openttd:latest
 
 ## Other tags ##
+   * 1.5.3
    * 1.5.2
    * 1.5.1
    * 1.5.0

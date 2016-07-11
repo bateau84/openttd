@@ -1,7 +1,6 @@
 export LC_ALL=C
 export DEBIAN_FRONTEND=noninteractive
-export DEBUG=0
-export loadgame=false
-export savename=autosave/exit.sav
 
+export OPENTTD_VERSION=${OPENTTD_VERSION:-"1.5.3"}
+export OPENGFX_VERSION=${OPENGFX_VERSION:-"0.5.4"}
 minimal_apt_get_install='apt-get install -y --no-install-recommends'
