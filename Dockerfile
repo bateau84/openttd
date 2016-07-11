@@ -5,8 +5,8 @@
 FROM phusion/baseimage:latest
 MAINTAINER Mats Bergmann <bateau@sea-shell.org>
 
-ARG OPENTTD_VERSION="1.5.3"
-ARG OPENGFX_VERSION="0.5.2"
+ARG OPENTTD_VERSION="1.6.1"
+ARG OPENGFX_VERSION="0.5.3"
 
 ADD . /tmp
 RUN /tmp/prepare.sh && \
