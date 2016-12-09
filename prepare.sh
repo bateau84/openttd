@@ -30,7 +30,7 @@ mkdir -p /etc/service/openttd/
 mkdir -p /usr/share/games/openttd/baseset/
 cd /usr/share/games/openttd/baseset/
 #wget -q http://binaries.openttd.org/extra/opengfx/${OPENGFX_VERSION}/opengfx-${OPENGFX_VERSION}-all.zip
-wget -q http://bundles.openttdcoop.org/opengfx/releases/LATEST/opengfx-${OPENGFX_VERSION}.zip
+wget -q http://bundles.openttdcoop.org/opengfx/releases/${OPENGFX_VERSION}/opengfx-${OPENGFX_VERSION}.zip
 unzip opengfx-${OPENGFX_VERSION}.zip
 tar -xf opengfx-${OPENGFX_VERSION}.tar
 rm -rf opengfx-*.tar opengfx-*.zip
