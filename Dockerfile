@@ -2,7 +2,7 @@
 # Dockerfile to build OpenTTD container images
 # Based on phusion:baseimage (from ubuntu)
 ############################################################
-FROM phusion/baseimage:0.9.15
+FROM phusion/baseimage:latest
 MAINTAINER Mats Bergmann <bateau@sea-shell.org>
 
 ARG OPENTTD_VERSION="1.6.1"

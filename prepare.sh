@@ -9,11 +9,16 @@ if [[ ! -e /etc/dpkg/dpkg.cfg.d/docker-apt-speedup ]]; then
 fi
 
 ## Enable Ubuntu Universe and Multiverse.
-sed -i 's/^#\s*\(deb.*restricted\)$/\1/g' /etc/apt/sources.list
+#sed -i 's/^#\s*\(deb.*restricted\)$/\1/g' /etc/apt/sources.list
 apt-get update
+apt-get dist-upgrade -y -qq
 
 ## Install things we need
-$minimal_apt_get_install wget unzip libfontconfig1 libfreetype6 libicu52 liblzo2-2 libsdl1.2debian
+$minimal_apt_get_install wget unzip libfontconfig1 libfreetype6 liblzo2-2 libsdl1.2debian
+
+## Install libicu52
+wget -q http://launchpadlibrarian.net/201330288/libicu52_52.1-8_amd64.deb
+dpkg -i libicu52_52.1-8_amd64.deb
 
 ## Create user
 mkdir -p /home/openttd/.openttd
