@@ -1,5 +1,7 @@
 #!/bin/sh
 
+DEBUG=${DEBUG:-"0"}
+
 if [ "$DEBUG" -gt 0 ]; then
 	echo "(t) Shuting down openttd...\n"
 fi
