@@ -15,21 +15,19 @@ with
 Its set up to not load any games by default (new game) and it can be run without mounting a .openttd folder. 
 However, if you want to load your savegames, mounting a .openttd folder is required.
 
-Set 
+loadgame has 4 "modes". true, false, last-autosave and exit.
+By setting `-e loadgame=true` you allso need to supply the name of the savegame by passing `-e savegame=<your-save-game>`. 
+With `-e loadgame=last-autosave` it will take the last (by timestamp) file created in autosave folder and load it.
+With `-e loadgame=exit` it will load the game in autosave called exit.sav. to enable Openttd to save on exit you need to set "autosave_on_exit = true" in your openttd.cfg file under the [gui] section.
 
-    -e "loadgame=exit" 
-
-to enable loading of save/autosave/exit.sav.
-For Openttd to save on exit you need to set "autosave_on_exit = true" in your openttd.cfg file under the [gui] section.
-
-Set UID og GID of user in container to be the same as your user outside with seting env PUID and PGID.
+Set UID and GID of user in container to be the same as your user outside with seting env PUID and PGID.
 For example
 
     -e PUID=1001 -e PGID=1000
 
 For other save games use 
 
-    -e "loadgame=true" -e "savename=your/save/game.sav"
+    -e "loadgame=true" -e "savegame=your/save/game.sav"
 
 Config files is located under /home/openttd/.openttd. To mount up your .openttd folder use 
 
@@ -37,9 +35,14 @@ Config files is located under /home/openttd/.openttd. To mount up your .openttd 
 
 For example to run server and load my savegame game.sav:
 
-    docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/<your_username>/.openttd:/home/openttd/.openttd -e PUID=<your_userid> -e PGID=<your_groupid> -e "loadgame=true" -e "savename=game.sav" bateau/openttd:latest
+    docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/<your_username>/.openttd:/home/openttd/.openttd -e PUID=<your_userid> -e PGID=<your_groupid> -e "loadgame=true" -e "savegame=game.sav" bateau/openttd:latest
 
 ## Other tags ##
+   * 1.8.0
+   * 1.8.0-RC1
+   * 1.7.2
+   * 1.7.2-RC1
+   * 1.7.1
    * 1.7.1-RC1
    * 1.7.0
    * 1.6.1
