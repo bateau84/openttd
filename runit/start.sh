@@ -3,6 +3,7 @@
 savepath="/home/openttd/.openttd/save"
 savegame="${savepath}/${savename}"
 LOADGAME_CHECK="${loadgame}x"
+loadgame=${loadgame:-'false'}
 
 # Loads the desired game, or prepare to load it next time server starts up!
 if [ ${LOADGAME_CHECK} != "x" ]; then
