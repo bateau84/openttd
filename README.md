@@ -25,17 +25,17 @@ For example
 
     -e PUID=1001 -e PGID=1000
 
-For other save games use 
+For other save games use (/home/openttd/.openttd/save/ is appended to savename when passed to openttd command)
 
-    -e "loadgame=true" -e "savegame=your/save/game.sav"
+    -e "loadgame=true" -e "savename=game.sav"
 
 Config files is located under /home/openttd/.openttd. To mount up your .openttd folder use 
 
    -v /path/to/your/.openttd:/home/openttd/.openttd
 
-For example to run server and load my savegame game.sav:
+For example to run server and load my savename game.sav:
 
-    docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/<your_username>/.openttd:/home/openttd/.openttd -e PUID=<your_userid> -e PGID=<your_groupid> -e "loadgame=true" -e "savegame=game.sav" bateau/openttd:latest
+    docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/<your_username>/.openttd:/home/openttd/.openttd -e PUID=<your_userid> -e PGID=<your_groupid> -e "loadgame=true" -e "savename=game.sav" bateau/openttd:latest
 
 ## Other tags ##
    * 1.8.0
