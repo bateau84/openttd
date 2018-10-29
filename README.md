@@ -16,7 +16,7 @@ Its set up to not load any games by default (new game) and it can be run without
 However, if you want to load your savegames, mounting a .openttd folder is required.
 
 loadgame has 4 "modes". true, false, last-autosave and exit.
-By setting `-e loadgame=true` you allso need to supply the name of the savegame by passing `-e savegame=<your-save-game>`. 
+By setting `-e loadgame=true` you allso need to supply the name of the savegame by passing `-e savename=<your-save-game>`. 
 With `-e loadgame=last-autosave` it will take the last (by timestamp) file created in autosave folder and load it.
 With `-e loadgame=exit` it will load the game in autosave called exit.sav. to enable Openttd to save on exit you need to set "autosave_on_exit = true" in your openttd.cfg file under the [gui] section.
 
