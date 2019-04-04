@@ -27,7 +27,7 @@ usermod -G users openttd
 chown openttd:openttd /home/openttd -R
 
 ## Download and install openttd
-wget -q http://binaries.openttd.org/releases/${OPENTTD_VERSION}/openttd-${OPENTTD_VERSION}-linux-ubuntu-trusty-amd64.deb
+wget -q https://proxy.binaries.openttd.org/openttd-releases/${OPENTTD_VERSION}/openttd-${OPENTTD_VERSION}-linux-ubuntu-bionic-amd64.deb
 dpkg -i openttd-${OPENTTD_VERSION}-linux-ubuntu-trusty-amd64.deb
 mkdir -p /etc/service/openttd/
 
