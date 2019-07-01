@@ -1,9 +1,14 @@
 #!/usr/bin/env groovy
 pipeline {
     agent any
+  
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
 
     triggers {
         cron('H H 1,15,30 1-11 *')
+        pollSCM('H/1 * * * *')
     }
 
     environment {
