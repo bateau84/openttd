@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 source /tmp/buildconfig
+source /etc/os-release
 set -x
 
 ## Temporarily disable dpkg fsync to make building faster.
@@ -9,16 +10,11 @@ if [[ ! -e /etc/dpkg/dpkg.cfg.d/docker-apt-speedup ]]; then
 fi
 
 ## Enable Ubuntu Universe and Multiverse.
-#sed -i 's/^#\s*\(deb.*restricted\)$/\1/g' /etc/apt/sources.list
 apt-get update
 apt-get dist-upgrade -y -qq
 
 ## Install things we need
-$minimal_apt_get_install wget unzip libfontconfig1 libfreetype6 liblzo2-2 libsdl1.2debian
-
-## Install libicu52
-wget -q http://launchpadlibrarian.net/201330288/libicu52_52.1-8_amd64.deb
-dpkg -i libicu52_52.1-8_amd64.deb
+$minimal_apt_get_install wget unzip libfontconfig1 libfreetype6 libicu55 liblzo2-2 libpng12-0 libsdl1.2debian
 
 ## Create user
 mkdir -p /home/openttd/.openttd
@@ -27,14 +23,13 @@ usermod -G users openttd
 chown openttd:openttd /home/openttd -R
 
 ## Download and install openttd
-wget -q https://proxy.binaries.openttd.org/openttd-releases/${OPENTTD_VERSION}/openttd-${OPENTTD_VERSION}-linux-ubuntu-bionic-amd64.deb
-dpkg -i openttd-${OPENTTD_VERSION}-linux-ubuntu-trusty-amd64.deb
+wget -q https://proxy.binaries.openttd.org/openttd-releases/${OPENTTD_VERSION}/openttd-${OPENTTD_VERSION}-linux-${ID}-${UBUNTU_CODENAME}-amd64.deb
+dpkg -i openttd-${OPENTTD_VERSION}-linux-${ID}-${UBUNTU_CODENAME}-amd64.deb
 mkdir -p /etc/service/openttd/
 
 ## Download GFX and install
 mkdir -p /usr/share/games/openttd/baseset/
 cd /usr/share/games/openttd/baseset/
-#wget -q http://binaries.openttd.org/extra/opengfx/${OPENGFX_VERSION}/opengfx-${OPENGFX_VERSION}-all.zip
 wget -q http://bundles.openttdcoop.org/opengfx/releases/${OPENGFX_VERSION}/opengfx-${OPENGFX_VERSION}.zip
 unzip opengfx-${OPENGFX_VERSION}.zip
 tar -xf opengfx-${OPENGFX_VERSION}.tar
