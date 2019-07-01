@@ -5,7 +5,7 @@
 FROM phusion/baseimage:latest
 MAINTAINER Mats Bergmann <bateau@sea-shell.org>
 
-ARG OPENTTD_VERSION="1.9.0"
+ARG OPENTTD_VERSION="1.9.1"
 ARG OPENGFX_VERSION="0.5.5"
 
 ADD . /tmp
