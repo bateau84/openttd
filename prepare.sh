@@ -11,10 +11,9 @@ fi
 
 ## Enable Ubuntu Universe and Multiverse.
 apt-get update
-apt-get dist-upgrade -y -qq
 
 ## Install things we need
-$minimal_apt_get_install wget unzip libfontconfig1 libfreetype6 libicu55 liblzo2-2 libpng12-0 libsdl1.2debian
+$minimal_apt_get_install wget unzip libfontconfig1 libfreetype6 libicu55 liblzma-dev liblzo2-2 libpng12-0 libsdl1.2debian
 
 ## Create user
 mkdir -p /home/openttd/.openttd
