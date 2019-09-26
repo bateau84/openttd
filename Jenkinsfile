@@ -17,8 +17,8 @@ pipeline {
         DOCKER_IMAGE_NAME = 'openttd'
         DOCKER_ARGS = '--no-cache --squash '
         RELEASE_FILE = 'releases'
-        GIT_COMMIT_ID = sh(returnStdout: true, script: "git rev-parse --short HEAD").trim()
-        GIT_BRANCH = sh(returnStdout: true, script: "git rev-parse --abbrev-ref HEAD").replace(" ", "-").replace("/", "-").replace(".", "-")
+        //GIT_COMMIT_ID = sh(returnStdout: true, script: "git rev-parse --short HEAD").trim()
+        //GIT_BRANCH = sh(returnStdout: true, script: "git rev-parse --abbrev-ref HEAD").replace(" ", "-").replace("/", "-").replace(".", "-")
     }
     
     stages {
@@ -36,11 +36,12 @@ pipeline {
                 }
             }
             steps {
-                script {
-                    def baseimage = docker.build("${env.DOCKER_REGISTRY}${env.DOCKER_REPOSITORY}/${env.DOCKER_IMAGE_NAME}:${env.GIT_BRANCH}-${env.GIT_COMMIT_ID}", "${env.DOCKER_ARGS}.")
-                    baseimage.push()
-                    env.imageName = baseimage.imageName()
-                }
+                sh "docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t bateau/openttd:ubuntu-test ."
+                // script {
+                //     def baseimage = docker.build("${env.DOCKER_REGISTRY}${env.DOCKER_REPOSITORY}/${env.DOCKER_IMAGE_NAME}:${env.GIT_BRANCH}-${env.GIT_COMMIT_ID}", "${env.DOCKER_ARGS}.")
+                //     baseimage.push()
+                //     env.imageName = baseimage.imageName()
+                // }
             }
         }
 
