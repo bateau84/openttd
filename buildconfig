@@ -3,4 +3,4 @@ export DEBIAN_FRONTEND=noninteractive
 
 export OPENTTD_VERSION=${OPENTTD_VERSION:-"1.5.3"}
 export OPENGFX_VERSION=${OPENGFX_VERSION:-"0.5.4"}
-minimal_apt_get_install='apt-get install -y --no-install-recommends'
+minimal_apt_get_install='apt-get install -yqq --no-install-recommends -o DPkg::Options::=--force-confold -o DPkg::Options::=--force-confdef'

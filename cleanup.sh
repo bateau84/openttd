@@ -2,9 +2,9 @@
 set -e
 set -x
 
-apt-get remove -y unzip wget
-apt-get autoremove -y
-apt-get autoclean -y
+apt-get remove -yqq unzip wget
+apt-get autoremove -yqq
+apt-get autoclean -yqq
 
 rm -rf /tmp/* /var/tmp/*
 rm -rf /var/lib/apt/lists/*

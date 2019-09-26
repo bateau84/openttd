@@ -9,22 +9,21 @@ if [[ ! -e /etc/dpkg/dpkg.cfg.d/docker-apt-speedup ]]; then
 	echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/docker-apt-speedup
 fi
 
-## Enable Ubuntu Universe and Multiverse.
+echo "deb http://security.ubuntu.com/ubuntu xenial-security main" >> /etc/apt/sources.list
+
+## Update pkg repos
 apt-get update
 
 ## Install things we need
-$minimal_apt_get_install wget unzip libfontconfig1 libfreetype6 libicu55 liblzma-dev liblzo2-2 libpng12-0 libsdl1.2debian
+$minimal_apt_get_install wget unzip ca-certificates libfontconfig1 libfreetype6 libicu-dev libpng12-0 liblzma-dev liblzo2-2 libsdl1.2debian
 
-## Create user
-mkdir -p /home/openttd/.openttd
-useradd -M -d /home/openttd -u 911 -U -s /bin/false openttd
-usermod -G users openttd
-chown openttd:openttd /home/openttd -R
+### Install dumb-init
+wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64
+chmod +x /usr/local/bin/dumb-init
 
 ## Download and install openttd
 wget -q https://proxy.binaries.openttd.org/openttd-releases/${OPENTTD_VERSION}/openttd-${OPENTTD_VERSION}-linux-${ID}-${UBUNTU_CODENAME}-amd64.deb
 dpkg -i openttd-${OPENTTD_VERSION}-linux-${ID}-${UBUNTU_CODENAME}-amd64.deb
-mkdir -p /etc/service/openttd/
 
 ## Download GFX and install
 mkdir -p /usr/share/games/openttd/baseset/
