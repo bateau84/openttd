@@ -32,3 +32,7 @@ wget -q http://bundles.openttdcoop.org/opengfx/releases/${OPENGFX_VERSION}/openg
 unzip opengfx-${OPENGFX_VERSION}.zip
 tar -xf opengfx-${OPENGFX_VERSION}.tar
 rm -rf opengfx-*.tar opengfx-*.zip
+
+## Create user
+adduser -D -u 1000 -s /bin/bash openttd
+addgroup openttd users

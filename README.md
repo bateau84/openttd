@@ -37,6 +37,15 @@ For example to run server and load my savename game.sav:
 
     docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/<your_username>/.openttd:/home/openttd/.openttd -e PUID=<your_userid> -e PGID=<your_groupid> -e "loadgame=true" -e "savename=game.sav" bateau/openttd:latest
 
+## Kubernetes ##
+
+Supplied some example for deploying on kubernetes cluster. "openttd.yaml"
+just run 
+
+    kubectl apply openttd.yaml
+
+and it will apply configmap with openttd.cfg, deployment and service listening on port 31979 UDP/TCP.
+
 ## Other tags ##
    * 1.9.1
    * 1.9.0

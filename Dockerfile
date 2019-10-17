@@ -8,6 +8,7 @@ ADD prepare.sh /tmp/prepare.sh
 ADD cleanup.sh /tmp/cleanup.sh
 ADD buildconfig /tmp/buildconfig
 ADD openttd.sh /openttd.sh
+ADD changeuser.sh /changeuser.sh
 
 RUN /tmp/prepare.sh \
     && /tmp/cleanup.sh
@@ -18,6 +19,6 @@ EXPOSE 3979/tcp
 EXPOSE 3979/udp
 
 STOPSIGNAL 3
-USER daemon
+USER openttd
 ENTRYPOINT [ "/usr/local/bin/dumb-init", "--" ]
 CMD [ "/openttd.sh" ]
