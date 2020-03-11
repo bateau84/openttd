@@ -7,7 +7,7 @@ ARG OPENGFX_VERSION="0.5.5"
 ADD prepare.sh /tmp/prepare.sh
 ADD cleanup.sh /tmp/cleanup.sh
 ADD buildconfig /tmp/buildconfig
-ADD openttd.sh /openttd.sh
+ADD --chown=1000:1000 openttd.sh /openttd.sh
 ADD changeuser.sh /changeuser.sh
 
 RUN /tmp/prepare.sh \
@@ -20,5 +20,5 @@ EXPOSE 3979/udp
 
 STOPSIGNAL 3
 USER openttd
-ENTRYPOINT [ "/usr/local/bin/dumb-init", "--" ]
+ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
 CMD [ "/openttd.sh" ]
