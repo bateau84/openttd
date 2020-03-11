@@ -1,6 +1,6 @@
 export LC_ALL=C
 export DEBIAN_FRONTEND=noninteractive
 
-export OPENTTD_VERSION=${OPENTTD_VERSION:-"1.5.3"}
-export OPENGFX_VERSION=${OPENGFX_VERSION:-"0.5.4"}
-minimal_apt_get_install='apt-get install -yqq --no-install-recommends -o DPkg::Options::=--force-confold -o DPkg::Options::=--force-confdef'
+export OPENTTD_VERSION=${OPENTTD_VERSION:-"1.10.0-RC1"}
+export OPENGFX_VERSION=${OPENGFX_VERSION:-"0.5.5"}
+minimal_apt_get_install='apt install -yqq --no-install-recommends -o DPkg::Options::=--force-confold -o DPkg::Options::=--force-confdef'

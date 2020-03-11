@@ -12,18 +12,15 @@ fi
 echo "deb http://security.ubuntu.com/ubuntu xenial-security main" >> /etc/apt/sources.list
 
 ## Update pkg repos
-apt-get update
+apt update
 
 ## Install things we need
-$minimal_apt_get_install wget unzip ca-certificates libfontconfig1 libfreetype6 libicu-dev libpng12-0 liblzma-dev liblzo2-2 libsdl1.2debian
-
-### Install dumb-init
-wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64
-chmod +x /usr/local/bin/dumb-init
+$minimal_apt_get_install dumb-init wget unzip ca-certificates libfontconfig1 libfreetype6 libicu-dev libpng12-0 liblzma-dev liblzo2-2 libsdl1.2debian libsdl2-2.0-0
 
 ## Download and install openttd
 wget -q https://proxy.binaries.openttd.org/openttd-releases/${OPENTTD_VERSION}/openttd-${OPENTTD_VERSION}-linux-${ID}-${UBUNTU_CODENAME}-amd64.deb
 dpkg -i openttd-${OPENTTD_VERSION}-linux-${ID}-${UBUNTU_CODENAME}-amd64.deb
+
 
 ## Download GFX and install
 mkdir -p /usr/share/games/openttd/baseset/
@@ -34,5 +31,8 @@ tar -xf opengfx-${OPENGFX_VERSION}.tar
 rm -rf opengfx-*.tar opengfx-*.zip
 
 ## Create user
-adduser -D -u 1000 -s /bin/bash openttd
+adduser --uid 1000 --shell /bin/bash openttd
 addgroup openttd users
+
+## Set entrypoint script to right user
+chmod +x /openttd.sh

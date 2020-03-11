@@ -1,7 +1,5 @@
 #!/bin/sh
 
-/bin/bash -c "/changeuser.sh"
-
 savepath="/home/openttd/.openttd/save"
 savegame="${savepath}/${savename}"
 LOADGAME_CHECK="${loadgame}x"
