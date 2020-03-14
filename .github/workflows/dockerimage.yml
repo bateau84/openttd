@@ -22,7 +22,7 @@ jobs:
     - name: Build the Docker image
       run: |
         for i in $(cat releases)
-        do;
-            docker build --rm --build-arg="OPENTTD_VERSION=$i" -t bateau/openttd:$i .;
-            docker push bateau/openttd:$i;
+        do
+            docker build --rm --build-arg="OPENTTD_VERSION=$i" -t bateau/openttd:$i .
+            docker push bateau/openttd:$i
         done
