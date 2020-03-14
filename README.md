@@ -1,4 +1,6 @@
-These images have been built and tested on docker 18.09.7-ce. Previous versions may not run as smooth.
+![Docker Image CI](https://github.com/bateau84/openttd/workflows/Docker%20Image%20CI/badge.svg?branch=master)
+
+These images have been built on github actions
 
 ## Usage ##
 
