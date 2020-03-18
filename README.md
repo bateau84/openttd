@@ -1,8 +1,20 @@
 ![Docker Image CI](https://github.com/bateau84/openttd/workflows/Docker%20Image%20CI/badge.svg?branch=master)
 
-These images have been built on github actions
-
 ## Usage ##
+
+### envs ###
+
+| Env | Default | Meaning |
+| --- | ------- | ------- |
+| savepath | "/home/openttd/.openttd/save" | The path to which autosave wil save |
+| loadgame | `null` | load game has 4 settings. false, true, last-autosave and exit.<br>  - false: this will just start server and create a new game.<br>  - true: if true is set you also need to set savename. savename needs to be the name of the saved game file. This will load the given saved game.<br>  - last-autosave: This will load the last autosaved game located in <$savepath>/autosave folder.<br>  - exit: This will load the exit.sav file located in <$savepath>/autosave/. |
+| savename | `null` | Set this when allong with `loadgame=true` to the value of your save game file-name |
+| PUID | "911" | This is the ID of the user inside the container. If you mount in (-v </path/of/your/choosing>:</path/inside/container>) you would need for the user inside the container to have the same ID as your user outside (so that you can save files for example). |
+| PGID | "911" | Same thing here, except Group ID. Your user has a group, and it needs to map to the same ID inside the container. |
+| debug | `null` | Set debug things. see openttd for debug options |
+
+
+### Examples ###
 
     docker run -d -p 3979:3979/tcp -p 3979:3979/udp bateau/openttd:latest
 
@@ -15,17 +27,12 @@ with
     -P
 
 Its set up to not load any games by default (new game) and it can be run without mounting a .openttd folder. 
-However, if you want to load your savegames, mounting a .openttd folder is required.
-
-loadgame has 4 "modes". true, false, last-autosave and exit.
-By setting `-e loadgame=true` you allso need to supply the name of the savegame by passing `-e savename=<your-save-game>`. 
-With `-e loadgame=last-autosave` it will take the last (by timestamp) file created in autosave folder and load it.
-With `-e loadgame=exit` it will load the game in autosave called exit.sav. to enable Openttd to save on exit you need to set "autosave_on_exit = true" in your openttd.cfg file under the [gui] section.
+However, if you want to save/load your games, mounting a .openttd folder is required.
 
 Set UID and GID of user in container to be the same as your user outside with seting env PUID and PGID.
 For example
 
-    -e PUID=1001 -e PGID=1000
+    -e PUID=1000 -e PGID=1000
 
 For other save games use (/home/openttd/.openttd/save/ is appended to savename when passed to openttd command)
 
@@ -49,22 +56,4 @@ just run
 and it will apply configmap with openttd.cfg, deployment and service listening on port 31979 UDP/TCP.
 
 ## Other tags ##
-   * 1.9.1
-   * 1.9.0
-   * 1.8.0
-   * 1.8.0-RC1
-   * 1.7.2
-   * 1.7.2-RC1
-   * 1.7.1
-   * 1.7.1-RC1
-   * 1.7.0
-   * 1.6.1
-   * 1.6.1-RC1
-   * 1.5.3
-   * 1.5.2
-   * 1.5.1
-   * 1.5.0
-   * 1.4.4
-   * 1.5.0-rc1
-   * 1.5.0-beta2
-   * 1.5.0-beta1
+   * See [bateau/openttd](https://hub.docker.com/r/bateau/openttd) on docker hub for other tags
