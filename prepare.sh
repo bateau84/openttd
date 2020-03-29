@@ -12,7 +12,7 @@ fi
 echo "deb http://security.ubuntu.com/ubuntu xenial-security main" >> /etc/apt/sources.list
 
 ## Update pkg repos
-apt update
+apt update -qq
 
 ## Install things we need
 $minimal_apt_get_install dumb-init wget unzip ca-certificates libfontconfig1 libfreetype6 libicu-dev libpng12-0 liblzma-dev liblzo2-2 libsdl1.2debian libsdl2-2.0-0
@@ -31,7 +31,7 @@ tar -xf opengfx-${OPENGFX_VERSION}.tar
 rm -rf opengfx-*.tar opengfx-*.zip
 
 ## Create user
-adduser --uid 1000 --shell /bin/bash openttd
+adduser --disabled-password --uid 1000 --shell /bin/bash --gecos "" openttd
 addgroup openttd users
 
 ## Set entrypoint script to right user

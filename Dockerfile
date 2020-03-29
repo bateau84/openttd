@@ -18,6 +18,5 @@ EXPOSE 3979/tcp
 EXPOSE 3979/udp
 
 STOPSIGNAL 3
-USER openttd
 ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
 CMD [ "/openttd.sh" ]
