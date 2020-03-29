@@ -2,7 +2,16 @@
 [![dockeri.co](https://dockeri.co/image/bateau/openttd)](https://hub.docker.com/r/bateau/openttd)
 ## Usage ##
 
-### envs ###
+### File locations ###
+This image is supplied with a user named `openttd`.  
+Openttd server is run as this user and subsequently its home folder will be `/home/openttd`.  
+Openttd on linux uses `.openttd` in the users homefolder to store configurations, savefiles and other miscelanius files.  
+If you want to your local files accessible to openttd inside the container you need to mount them inside with `-v` parameter (see https://docs.docker.com/engine/reference/commandline/run/ for more details on -v)
+
+
+### Environment variables ###
+These environment variables can be altered to change the behavior of the application inside the cotainer.  
+To set a new value to an enviroment variable use docker's `-e ` parameter (see https://docs.docker.com/engine/reference/commandline/run/ for more details)  
 
 | Env | Default | Meaning |
 | --- | ------- | ------- |
@@ -14,37 +23,37 @@
 | debug | `null` | Set debug things. see openttd for debug options |
 
 
+### Networking ###
+By default docker does not expose the containers on your network. This you must do manually with `-p` parameter (see https://docs.docker.com/engine/reference/commandline/run/ for more detauls on -p).  
+If your openttd config is set up to listen on port 3979 you need to map the container port to your machines network like so `-p 3979:3979` where the first reference is the container port and the second your machines port.  
+
 ### Examples ###
+
+Run Openttd and expose the default ports.  
 
     docker run -d -p 3979:3979/tcp -p 3979:3979/udp bateau/openttd:latest
 
-For random port assignment replace
+Run Openttd with random port assignment.  
 
-    -p 3979:3979/tcp -p 3979:3979/udp
+    docker run -d -P bateau/openttd:latest
 
-with 
-
-    -P
-
-Its set up to not load any games by default (new game) and it can be run without mounting a .openttd folder. 
+Its set up to not load any games by default (new game) and it can be run without mounting a .openttd folder.  
 However, if you want to save/load your games, mounting a .openttd folder is required.
+
+    docker run -v /path/to/your/.openttd:/home/openttd/.openttd -p 3979:3979/tcp -p 3979:3979/udp bateau/openttd:latest
 
 Set UID and GID of user in container to be the same as your user outside with seting env PUID and PGID.
 For example
 
-    -e PUID=1000 -e PGID=1000
+    docker run -e PUID=1000 -e PGID=1000 -v /path/to/your/.openttd:/home/openttd/.openttd -p 3979:3979/tcp -p 3979:3979/udp bateau/openttd:latest
 
 For other save games use (/home/openttd/.openttd/save/ is appended to savename when passed to openttd command)
 
-    -e "loadgame=true" -e "savename=game.sav"
-
-Config files is located under /home/openttd/.openttd. To mount up your .openttd folder use 
-
-   -v /path/to/your/.openttd:/home/openttd/.openttd
+    docker run -e "loadgame=true" -e "savename=game.sav" -v /path/to/your/.openttd:/home/openttd/.openttd -p 3979:3979/tcp -p 3979:3979/udp bateau/openttd:latest
 
 For example to run server and load my savename game.sav:
 
-    docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/<your_username>/.openttd:/home/openttd/.openttd -e PUID=<your_userid> -e PGID=<your_groupid> -e "loadgame=true" -e "savename=game.sav" bateau/openttd:latest
+    docker run -d -p 3979:3979/tcp -p 3979:3979/udp -v /home/<your_username>/.openttd:/home/openttd/.openttd -e PUID=<your_userid> -e PGID=<your_groupid> -e "loadgame=true" -e "savename=game.sav" bateau/openttd:latest
 
 ## Kubernetes ##
 
