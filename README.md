@@ -5,12 +5,12 @@
 ### File locations ###
 This image is supplied with a user named `openttd`.  
 Openttd server is run as this user and subsequently its home folder will be `/home/openttd`.  
-Openttd on linux uses `.openttd` in the users homefolder to store configurations, savefiles and other miscelanius files.  
-If you want to your local files accessible to openttd inside the container you need to mount them inside with `-v` parameter (see https://docs.docker.com/engine/reference/commandline/run/ for more details on -v)
+Openttd on linux uses `.openttd` in the users homefolder to store configurations, savefiles and other miscellaneous files.  
+If you want to your local files accessible to openttd server inside the container you need to mount them inside with `-v` parameter (see https://docs.docker.com/engine/reference/commandline/run/ for more details on -v)
 
 
 ### Environment variables ###
-These environment variables can be altered to change the behavior of the application inside the cotainer.  
+These environment variables can be altered to change the behavior of the application inside the container.  
 To set a new value to an enviroment variable use docker's `-e ` parameter (see https://docs.docker.com/engine/reference/commandline/run/ for more details)  
 
 | Env | Default | Meaning |
@@ -24,7 +24,7 @@ To set a new value to an enviroment variable use docker's `-e ` parameter (see h
 
 
 ### Networking ###
-By default docker does not expose the containers on your network. This you must do manually with `-p` parameter (see https://docs.docker.com/engine/reference/commandline/run/ for more detauls on -p).  
+By default docker does not expose the containers on your network. This you must do manually with `-p` parameter (see https://docs.docker.com/engine/reference/commandline/run/ for more details on -p).  
 If your openttd config is set up to listen on port 3979 you need to map the container port to your machines network like so `-p 3979:3979` where the first reference is the container port and the second your machines port.  
 
 ### Examples ###
