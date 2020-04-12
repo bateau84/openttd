@@ -24,8 +24,8 @@ To set a new value to an enviroment variable use docker's `-e ` parameter (see h
 
 
 ### Networking ###
-By default docker does not expose the containers on your network. This you must do manually with `-p` parameter (see https://docs.docker.com/engine/reference/commandline/run/ for more details on -p).  
-If your openttd config is set up to listen on port 3979 you need to map the container port to your machines network like so `-p 3979:3979` where the first reference is the container port and the second your machines port.  
+By default docker does not expose the containers on your network. This must be done manually with `-p` parameter (see [here](https://docs.docker.com/engine/reference/commandline/run/) for more details on -p).
+If your openttd config is set up to listen on port 3979 you need to map the container port to your machines network like so `-p 3979:3979` where the first reference is the host machines port and the second the container port.
 
 ### Examples ###
 
