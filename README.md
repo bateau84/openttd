@@ -57,7 +57,7 @@ For example to run server and load my savename game.sav:
 
 ## Kubernetes ##
 
-Supplied some example for deploying on kubernetes cluster. "openttd.yaml"
+Supplied some example for deploying on kubernetes cluster. "k8s_openttd.yml"
 just run 
 
     kubectl apply openttd.yaml
