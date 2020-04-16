@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 MAINTAINER Mats Bergmann <bateau@sea-shell.org>
 
-ARG OPENTTD_VERSION="1.10.0"
+ARG OPENTTD_VERSION="1.10.1"
 ARG OPENGFX_VERSION="0.5.5"
 
 ADD prepare.sh /tmp/prepare.sh
