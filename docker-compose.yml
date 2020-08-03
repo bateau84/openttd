@@ -1,0 +1,25 @@
+version: "3.4"
+
+services:
+  openttd:
+    container_name: openttd
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      network: host
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - openttd:/home/openttd/
+    tty: true
+    environment:
+      - loadgame=false
+#      - loadgame=last-autosave
+#    entrypoint:
+#      - /bin/sleep
+#      - infinity
+
+volumes:
+  openttd:
+    external: true
+

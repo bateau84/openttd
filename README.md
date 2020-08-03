@@ -55,6 +55,26 @@ For example to run server and load my savename game.sav:
 
     docker run -d -p 3979:3979/tcp -p 3979:3979/udp -v /home/<your_username>/.openttd:/home/openttd/.openttd -e PUID=<your_userid> -e PGID=<your_groupid> -e "loadgame=true" -e "savename=game.sav" bateau/openttd:latest
 
+## Docker-compose ##
+
+This is the simplest way according to a contributor:
+
+```bash
+docker volume create openttd
+docker-compose down; docker-compose up -d
+docker-compose logs -f openttd
+```
+
+Use this to send *rcon* commands to the server:
+
+```bash
+docker exec -itu openttd openttd screen -x ttd
+```
+
+Exit with C^a C^d.
+
+Pass "loadgame" and other variables in *docker-compose.yml*.
+
 ## Kubernetes ##
 
 Supplied some example for deploying on kubernetes cluster. "k8s_openttd.yml"

@@ -10,6 +10,8 @@ PGID=${PGID:-911}
 PHOME=${PHOME:-"/home/openttd"}
 USER=${USER:-"openttd"}
 
+CMD="screen -mS ttd /usr/games/openttd -D"
+
 if [ ! "$(id -u ${USER})" -eq "$PUID" ]; then usermod -o -u "$PUID" ${USER} ; fi
 if [ ! "$(id -g ${USER})" -eq "$PGID" ]; then groupmod -o -g "$PGID" ${USER} ; fi
 if [ "$(grep ${USER} /etc/passwd | cut -d':' -f6)" != "${PHOME}" ]; then
@@ -38,7 +40,7 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
                         if [ -f  ${savegame} ]; then
                                 echo "We are loading a save game!"
                                 echo "Lets load ${savegame}"
-                                su -l openttd -c "/usr/games/openttd -D -g ${savegame} -x -d ${DEBUG}"
+                                su -l openttd -c "${CMD} -g ${savegame} -x -d ${DEBUG}"
                                 exit 0
                         else
                                 echo "${savegame} not found..."
@@ -47,19 +49,25 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
                 ;;
                 'false')
                         echo "Creating a new game."
-                        su -l openttd -c "/usr/games/openttd -D -x -d ${DEBUG}"
+                        su -l openttd -c "${CMD} -x -d ${DEBUG}"
                         exit 0
                 ;;
                 'last-autosave')
+                        
+                        if [ -d "${savepath}/autosave/" ]; then
+				savegame=${savepath}/autosave/`ls -rt ${savepath}/autosave/ | tail -n1`
 
-			savegame=${savepath}/autosave/`ls -rt ${savepath}/autosave/ | tail -n1`
-
-			if [ -r ${savegame} ]; then
-	                        echo "Loading ${savegame}"
-        	                su -l openttd -c "/usr/games/openttd -D -g ${savegame} -x -d ${DEBUG}"
-                	        exit 0
+				if [ -r ${savegame} ]; then
+					echo "Loading ${savegame}"
+					echo su -l openttd -c "${CMD} -g ${savegame} -x -d ${DEBUG}"
+					su -l openttd -c "${CMD} -g ${savegame} -x -d ${DEBUG}"
+					exit 0
+				else
+					echo "${savegame} not found..."
+					exit 1
+				fi
 			else
-				echo "${savegame} not found..."
+				echo "Directory ${savepath}/autosave/ does not exist yet, possibly this is the first run!"
 				exit 1
 			fi
                 ;;
@@ -69,7 +77,7 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
 
 			if [ -r ${savegame} ]; then
 	                        echo "Loading ${savegame}"
-        	                su -l openttd -c "/usr/games/openttd -D -g ${savegame} -x -d ${DEBUG}"
+        	                su -l openttd -c "${CMD} -g ${savegame} -x -d ${DEBUG}"
                 	        exit 0
 			else
 				echo "${savegame} not found..."
@@ -83,6 +91,6 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
         esac
 else
 	echo "\$loadgame (\"${loadgame}\") not set, starting new game"
-        su -l openttd -c "/usr/games/openttd -D -x"
+        su -l openttd -c "${CMD} -x"
         exit 0
 fi

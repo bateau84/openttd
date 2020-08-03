@@ -15,7 +15,7 @@ echo "deb http://security.ubuntu.com/ubuntu xenial-security main" >> /etc/apt/so
 apt update -qq
 
 ## Install things we need
-$minimal_apt_get_install dumb-init wget unzip ca-certificates libfontconfig1 libfreetype6 libicu-dev libpng12-0 liblzma-dev liblzo2-2 libsdl1.2debian libsdl2-2.0-0 > /dev/null 2>&1
+$minimal_apt_get_install dumb-init wget unzip ca-certificates libfontconfig1 libfreetype6 libicu-dev libpng12-0 liblzma-dev liblzo2-2 libsdl1.2debian libsdl2-2.0-0 screen > /dev/null 2>&1
 
 ## Download and install openttd
 wget -q https://proxy.binaries.openttd.org/openttd-releases/${OPENTTD_VERSION}/openttd-${OPENTTD_VERSION}-linux-${ID}-${UBUNTU_CODENAME}-amd64.deb
@@ -25,8 +25,8 @@ dpkg -i openttd-${OPENTTD_VERSION}-linux-${ID}-${UBUNTU_CODENAME}-amd64.deb
 ## Download GFX and install
 mkdir -p /usr/share/games/openttd/baseset/
 cd /usr/share/games/openttd/baseset/
-wget -q http://bundles.openttdcoop.org/opengfx/releases/${OPENGFX_VERSION}/opengfx-${OPENGFX_VERSION}.zip
-unzip opengfx-${OPENGFX_VERSION}.zip
+wget -q http://cdn.openttd.org/opengfx-releases/${OPENGFX_VERSION}/opengfx-${OPENGFX_VERSION}-all.zip
+unzip opengfx-${OPENGFX_VERSION}-all.zip
 tar -xf opengfx-${OPENGFX_VERSION}.tar
 rm -rf opengfx-*.tar opengfx-*.zip
 
@@ -34,5 +34,5 @@ rm -rf opengfx-*.tar opengfx-*.zip
 adduser --disabled-password --uid 1000 --shell /bin/bash --gecos "" openttd
 addgroup openttd users
 
-## Set entrypoint script to right user
-chmod +x /openttd.sh
+### Set entrypoint script to right user
+#chmod +x /openttd.sh
