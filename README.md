@@ -15,7 +15,7 @@ To set a new value to an enviroment variable use docker's `-e ` parameter (see h
 
 | Env | Default | Meaning |
 | --- | ------- | ------- |
-| savepath | "/home/openttd/.openttd/save" | The path to which autosave wil save |
+| savepath | "/home/openttd" | The path to which autosave wil save |
 | loadgame | `null` | load game has 4 settings. false, true, last-autosave and exit.<br>  - **false**: this will just start server and create a new game.<br>  - **true**: if true is set you also need to set savename. savename needs to be the name of the saved game file. This will load the given saved game.<br>  - **last-autosave**: This will load the last autosaved game located in <$savepath>/autosave folder.<br>  - **exit**: This will load the exit.sav file located in <$savepath>/autosave/. |
 | savename | `null` | Set this when allong with `loadgame=true` to the value of your save game file-name |
 | PUID | "911" | This is the ID of the user inside the container. If you mount in (-v </path/of/your/choosing>:</path/inside/container>) you would need for the user inside the container to have the same ID as your user outside (so that you can save files for example). |
