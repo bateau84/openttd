@@ -20,8 +20,15 @@ jobs:
       run: docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_ACCESS_TOKEN}
     - name: Build the Docker image
       run: |
+        c=1
         for i in $(cat releases)
         do
+            if [ $c -eq 1 ];
+            then
+                docker build --rm --build-arg="OPENTTD_VERSION=$i" -t bateau/openttd:latest .
+                docker push bateau/openttd:latest
+                c=$((c+1))
+            fi
             docker build --rm --build-arg="OPENTTD_VERSION=$i" -t bateau/openttd:$i .
             docker push bateau/openttd:$i
         done
