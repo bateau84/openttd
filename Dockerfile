@@ -1,5 +1,4 @@
 FROM ubuntu:18.04
-MAINTAINER Mats Bergmann <bateau@sea-shell.org>
 
 ARG OPENTTD_VERSION="1.10.3"
 ARG OPENGFX_VERSION="0.6.0"
