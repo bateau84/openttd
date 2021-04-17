@@ -60,7 +60,9 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
                 	        exit 0
 			else
 				echo "${savegame} not found..."
-				exit 1
+	                        echo "Creating a new game."
+	                        su -l openttd -c "/usr/games/openttd -D -x -d ${DEBUG}"
+	                        exit 0
 			fi
                 ;;
                 'exit')
@@ -73,7 +75,9 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
                 	        exit 0
 			else
 				echo "${savegame} not found..."
-				exit 1
+				echo "Creating a new game."
+                        	su -l openttd -c "/usr/games/openttd -D -x -d ${DEBUG}"
+                        	exit 0
 			fi
                 ;;
 		*)
