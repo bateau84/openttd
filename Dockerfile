@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-ARG OPENTTD_VERSION="1.11.1"
+ARG OPENTTD_VERSION="1.11.2"
 ARG OPENGFX_VERSION="0.6.1"
 
 ADD prepare.sh /tmp/prepare.sh
