@@ -51,9 +51,8 @@ jobs:
       - name: Output platforms
         run: |
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
-      - name: Build and push
+      - name: Build and push with latest
         if: needs.get_versions.outputs.versions == matrix.version
-        id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
@@ -64,12 +63,9 @@ jobs:
             ${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ matrix.version }}
       - name: Build and push
         if: needs.get_versions.outputs.versions != matrix.version
-        id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
           pull: true
           build-args: OPENTTD_VERSION=${{ matrix.version }}
           tags: ${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ matrix.version }}
-      - name: Output image digest for debugging purposes
-        run: echo ${{ steps.docker_build.outputs.digest }}
