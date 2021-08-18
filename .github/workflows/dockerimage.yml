@@ -52,7 +52,7 @@ jobs:
         run: |
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
       - name: Build and push
-        if: ${{ needs.get_versions.outputs.versions == ${{ matrix.version }}}}
+        if: needs.get_versions.outputs.versions == matrix.version
         id: docker_build
         uses: docker/build-push-action@v2
         with:
@@ -63,7 +63,7 @@ jobs:
             ${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
             ${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ matrix.version }}
       - name: Build and push
-        if: ${{ needs.get_versions.outputs.versions != ${{ matrix.version }}}}
+        if: needs.get_versions.outputs.versions != matrix.version
         id: docker_build
         uses: docker/build-push-action@v2
         with:
