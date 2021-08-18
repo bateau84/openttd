@@ -21,10 +21,12 @@ jobs:
         id: get_versions
         run: |
           echo "::set-output name=versions::$(curl -s -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/OpenTTD/OpenTTD/releases | jq -cMr '[.[:10]|.[]|.tag_name]')"
+          echo "::set-output name=latest::$(curl -s -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/OpenTTD/OpenTTD/releases | jq -cMr '([.[]|select(all(.tag_name; contains("beta")|not))])|.[:1]|.[].tag_name')"
       - name: Output version string
-        run: echo ${{ steps.get_versions.outputs.versions }}
+        run: echo ${{ steps.get_versions.outputs.versions }} ${{ steps.get_versions.outputs.latest }}
     outputs:
       versions: ${{ steps.get_versions.outputs.versions }}
+      latest: ${{ steps.get_versions.outputs.latest }}
 
   # Build openttd images
   build:
@@ -50,6 +52,18 @@ jobs:
         run: |
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
       - name: Build and push
+        if: ${{ needs.get_versions.outputs.versions == ${{ matrix.version }}}}
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          pull: true
+          build-args: OPENTTD_VERSION=${{ matrix.version }}
+          tags: 
+            - ${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+            - ${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ matrix.version }}
+      - name: Build and push
+        if: ${{ needs.get_versions.outputs.versions != ${{ matrix.version }}}}
         id: docker_build
         uses: docker/build-push-action@v2
         with:
