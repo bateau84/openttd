@@ -24,7 +24,7 @@ jobs:
           echo "::set-output name=versions::$(curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/OpenTTD/OpenTTD/releases | jq -r '.[:10]|.[].tag_name')"
     outputs:
       versions: ${{ steps.get_versions.outputs.versions }}
-  
+
   # Build openttd images
   build:
     runs-on: ubuntu-latest
@@ -53,6 +53,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ env.DOCKER_CONTAINER_REGISTRY }}/${{ env.DOCKER_REPO_NAME }}/${{ envDOCKER_IMAGE_NAME }}:${{ matrix.version }}
+          tags: ${{ env.DOCKER_CONTAINER_REGISTRY }}/${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ matrix.version }}
       - name: Output image digest for debugging purposes
         run: echo ${{ steps.docker_build.outputs.digest }}
