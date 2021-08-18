@@ -59,9 +59,9 @@ jobs:
           push: true
           pull: true
           build-args: OPENTTD_VERSION=${{ matrix.version }}
-          tags: 
-            - ${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
-            - ${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ matrix.version }}
+          tags: |
+            ${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+            ${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ matrix.version }}
       - name: Build and push
         if: ${{ needs.get_versions.outputs.versions != ${{ matrix.version }}}}
         id: docker_build
