@@ -22,6 +22,8 @@ jobs:
         id: get_versions
         run: |
           echo "::set-output name=versions::$(curl -s -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/OpenTTD/OpenTTD/releases | jq -r '[.[:10]|.[]|.tag_name]|@csv')"
+      - name: Output version string
+        run: echo ${{ steps.get_versions.outputs.versions }}
     outputs:
       versions: ${{ steps.get_versions.outputs.versions }}
 
