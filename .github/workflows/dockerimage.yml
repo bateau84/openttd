@@ -9,7 +9,7 @@ on:
     branches: [ master ]
 
 env:
-  DOCKER_REPO_NAME: bateau84
+  DOCKER_REPO_NAME: bateau
   DOCKER_IMAGE_NAME: openttd
 
 jobs:
