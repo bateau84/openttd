@@ -1,6 +1,6 @@
 #!/bin/sh
 
-savepath="/home/openttd/.openttd/save"
+savepath="/home/openttd/.local/share/openttd/save"
 savegame="${savepath}/${savename}"
 LOADGAME_CHECK="${loadgame}x"
 loadgame=${loadgame:-'false'}
@@ -15,10 +15,17 @@ if [ ! "$(id -g ${USER})" -eq "$PGID" ]; then groupmod -o -g "$PGID" ${USER} ; f
 if [ "$(grep ${USER} /etc/passwd | cut -d':' -f6)" != "${PHOME}" ]; then
         if [ ! -d ${PHOME} ]; then
                 mkdir -p ${PHOME}
-                chown ${USER}:${USER} ${PHOME}
+                chown ${USER}:${USER} -R ${PHOME}
         fi
         usermod -m -d ${PHOME} ${USER}
 fi
+
+#create save folder and set permissions
+mkdir -p ${savepath}
+chown ${USER}:${USER} -R ${savepath}
+
+#fix home folder permissions
+chown ${USER}:${USER} -R ${PHOME}
 
 echo "
 -----------------------------------

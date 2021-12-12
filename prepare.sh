@@ -20,7 +20,7 @@ $minimal_apt_get_install dumb-init wget unzip ca-certificates libfontconfig1 lib
 ## Download and install openttd
 wget -q https://cdn.openttd.org/openttd-releases/${OPENTTD_VERSION}/openttd-${OPENTTD_VERSION}-linux-${ID}-${UBUNTU_CODENAME}-amd64.deb
 dpkg -i openttd-${OPENTTD_VERSION}-linux-${ID}-${UBUNTU_CODENAME}-amd64.deb
-
+rm -rf openttd-${OPENTTD_VERSION}-linux-${ID}-${UBUNTU_CODENAME}-amd64.deb
 
 ## Download GFX and install
 mkdir -p /usr/share/games/openttd/baseset/
