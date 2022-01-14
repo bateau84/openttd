@@ -74,6 +74,7 @@ jobs:
             # Trivy test
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
+        id: trivy
         with:
           image-ref: '${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ matrix.version }}'
           format: 'json'
@@ -81,3 +82,10 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+      - name: test outputs
+        run: |
+          cat << EOF > test.json
+          ${{ steps.trivy.outputs.stdout }}
+          EOF
+
+          cat test.json
