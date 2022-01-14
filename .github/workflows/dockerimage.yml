@@ -1,12 +1,13 @@
+---
 name: Docker Image CI
 
 on:
   schedule:
     - cron: '0 0 * * *'
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 env:
   DOCKER_REPO_NAME: bateau
@@ -19,12 +20,13 @@ jobs:
     steps:
       - name: get versions
         id: get_versions
+        # yamllint disable-line rule:line-length
         run: |
           echo "::set-output name=versions::$(curl -s -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/OpenTTD/OpenTTD/releases | jq -cMr '[.[:10]|.[]|.tag_name]')"
           echo "::set-output name=latest::$(curl -s -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/OpenTTD/OpenTTD/releases | jq -cMr '([.[]|select(all(.tag_name; contains("beta")|not))])|.[:1]|.[].tag_name')"
       - name: Output version string
         run: |
-          echo ${{ steps.get_versions.outputs.versions }} 
+          echo ${{ steps.get_versions.outputs.versions }}
           echo ${{ steps.get_versions.outputs.latest }}
     outputs:
       versions: ${{ steps.get_versions.outputs.versions }}
@@ -71,7 +73,7 @@ jobs:
           pull: true
           build-args: OPENTTD_VERSION=${{ matrix.version }}
           tags: ${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ matrix.version }}
-            # Trivy test
+      # Trivy test
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         id: trivy
@@ -82,10 +84,7 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+          output: results.json
       - name: test outputs
         run: |
-          cat << EOF > test.json
-          ${{ steps.trivy.outputs.stdout }}
-          EOF
-
-          cat test.json
+          cat results.json
