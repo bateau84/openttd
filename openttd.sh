@@ -1,6 +1,17 @@
 #!/bin/sh
 
-savepath="/home/openttd/.local/share/openttd/save"
+old_openttd_dir="/home/openttd/.openttd"
+new_openttd_dir="/home/openttd/.local/share/openttd"
+
+#check if new openttd profile dir exists
+if [ -d ${new_openttd_dir} ]; then
+  # if exists, set the new path
+  savepath="/home/openttd/.local/share/openttd/save"
+else
+  # if not, leave the old path
+  savepath="/home/openttd/.openttd/save"
+fi
+
 savegame="${savepath}/${savename}"
 LOADGAME_CHECK="${loadgame}x"
 loadgame=${loadgame:-'false'}

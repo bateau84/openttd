@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-ARG OPENTTD_VERSION="12.1"
+ARG OPENTTD_VERSION="12.2"
 ARG OPENGFX_VERSION="7.1"
 
 ADD prepare.sh /tmp/prepare.sh
