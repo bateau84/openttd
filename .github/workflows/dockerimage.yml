@@ -12,7 +12,7 @@ on:
     branches: [master]
 
 env:
-  DOCKER_REPO_NAME: bateau
+  DOCKER_REPO_NAME: hoggaming
   DOCKER_IMAGE_NAME: openttd
 
 jobs:
