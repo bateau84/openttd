@@ -40,7 +40,6 @@ jobs:
         with:
           push: true
           pull: true
-          build-args: OPENTTD_VERSION=STEAM
           tags: |
             ${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
       # Trivy test
