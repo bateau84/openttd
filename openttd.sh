@@ -37,8 +37,7 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
                 'true')
                         if [ -f  ${savegame} ]; then
                                 echo "We are loading a save game!"
-                                echo "Lets load ${savegame}"
-                                su -l openttd -c "/home/openttd/gamefiles/openttd-13.0-linux-generic-amd64/openttd -D -g ${savegame} -x -d ${DEBUG}"
+                                echo "Lets load ${s -D -g ${savegame} -x -d ${DEBUG}"
                                 exit 0
                         else
                                 echo "${savegame} not found..."
@@ -47,7 +46,7 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
                 ;;
                 'false')
                         echo "Creating a new game."
-                        su -l openttd -c "/home/openttd/gamefiles/openttd-13.0-linux-generic-amd64/openttd -D -x -d ${DEBUG}"
+                        su -l openttd -c "/home/openttd/gamefiles/openttd -D -x -d ${DEBUG}"
                         exit 0
                 ;;
                 'last-autosave')
@@ -55,13 +54,11 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
 			savegame=${savepath}/autosave/`ls -rt ${savepath}/autosave/ | tail -n1`
 
 			if [ -r ${savegame} ]; then
-	                        echo "Loading ${savegame}"
-        	                su -l openttd -c "/home/openttd/gamefiles/openttd-13.0-linux-generic-amd64/openttd -D -g ${savegame} -x -d ${DEBUG}"
+	                        echo "Loading ${s -D -g ${savegame} -x -d ${DEBUG}"
                 	        exit 0
 			else
 				echo "${savegame} not found..."
-	                        echo "Creating a new game."
-	                        su -l openttd -c "/home/openttd/gamefiles/openttd-13.0-linux-generic-amd64/openttd -D -x -d ${DEBUG}"
+	                        echo "Creating a n -D -x -d ${DEBUG}"
 	                        exit 0
 			fi
                 ;;
@@ -70,13 +67,11 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
 			savegame="${savepath}/autosave/exit.sav"
 
 			if [ -r ${savegame} ]; then
-	                        echo "Loading ${savegame}"
-        	                su -l openttd -c "/home/openttd/gamefiles/openttd-13.0-linux-generic-amd64/openttd -D -g ${savegame} -x -d ${DEBUG}"
+	                        echo "Loading ${s -D -g ${savegame} -x -d ${DEBUG}"
                 	        exit 0
 			else
 				echo "${savegame} not found..."
-				echo "Creating a new game."
-                        	su -l openttd -c "/home/openttd/gamefiles/openttd-13.0-linux-generic-amd64/openttd -D -x -d ${DEBUG}"
+				echo "Creating a n -D -x -d ${DEBUG}"
                         	exit 0
 			fi
                 ;;
@@ -86,7 +81,6 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
 		;;
         esac
 else
-	echo "\$loadgame (\"${loadgame}\") not set, starting new game"
-        su -l openttd -c "/home/openttd/gamefiles/openttd-13.0-linux-generic-amd64/openttd -D -x"
+	echo "\$loadgame (\"${loadgame}\") not set, starti -D -x"
         exit 0
 fi
