@@ -26,6 +26,7 @@ mkdir /home/openttd/gamefiles
 chown openttd /home/openttd/gamefiles
 wget "https://cdn.openttd.org/openttd-releases/13.0/openttd-13.0-linux-generic-amd64.tar.xz" -P /home/openttd/
 tar -xvf /home/openttd/openttd-13.0-linux-generic-amd64.tar.xz --directory /home/openttd/gamefiles/
+chown openttd /home/openttd/gamefiles
 
 ## Set entrypoint script to right user
 chmod +x /openttd.sh
