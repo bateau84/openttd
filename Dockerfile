@@ -1,5 +1,8 @@
 FROM ubuntu:22.04
 
+ARG OPENTTD_VERSION="13.0"
+ARG OPENGFX_VERSION="7.1"
+
 ADD prepare.sh /tmp/prepare.sh
 ADD cleanup.sh /tmp/cleanup.sh
 ADD buildconfig /tmp/buildconfig
