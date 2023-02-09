@@ -16,10 +16,6 @@ env:
   DOCKER_IMAGE_NAME: openttd
 
 jobs:
-  # Get list of versions
-  get_versions:
-    runs-on: ubuntu-latest
-
   # Build openttd images
   build:
     runs-on: ubuntu-latest
