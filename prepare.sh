@@ -17,23 +17,12 @@ apt update -qq
 ## Install things we need
 $minimal_apt_get_install dumb-init wget unzip ca-certificates libfontconfig1 libfreetype6 libfluidsynth3 libicu-dev libpng16-16 liblzma-dev liblzo2-2 libsdl1.2debian libsdl2-2.0-0 > /dev/null 2>&1
 
-## Download and install openttd
-wget -q https://cdn.openttd.org/openttd-releases/${OPENTTD_VERSION}/openttd-${OPENTTD_VERSION}-linux-${ID}-${UBUNTU_CODENAME}-amd64.deb
-dpkg -i openttd-${OPENTTD_VERSION}-linux-${ID}-${UBUNTU_CODENAME}-amd64.deb
-
-
-## Download GFX and install
-mkdir -p /usr/share/games/openttd/baseset/
-cd /usr/share/games/openttd/baseset/
-wget -q -O opengfx-${OPENGFX_VERSION}.zip https://cdn.openttd.org/opengfx-releases/${OPENGFX_VERSION}/opengfx-${OPENGFX_VERSION}-all.zip
-
-unzip opengfx-${OPENGFX_VERSION}.zip
-tar -xf opengfx-${OPENGFX_VERSION}.tar
-rm -rf opengfx-*.tar opengfx-*.zip
-
 ## Create user
 adduser --disabled-password --uid 1000 --shell /bin/bash --gecos "" openttd
 addgroup openttd users
+
+#Install OpenTTD
+steamcmd +force_install_dir /home/openttd/ +login anonymous +app_update "1536610" +quit
 
 ## Set entrypoint script to right user
 chmod +x /openttd.sh
