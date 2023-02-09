@@ -21,8 +21,9 @@ $minimal_apt_get_install dumb-init wget unzip ca-certificates libfontconfig1 lib
 adduser --disabled-password --uid 1000 --shell /bin/bash --gecos "" openttd
 addgroup openttd users
 
-#Install OpenTTD
-steamcmd +force_install_dir /home/openttd/ +login anonymous +app_update "1536610" +quit
+#Install OpenTTD (Make better`er in future)
+wget "https://cdn.openttd.org/openttd-releases/13.0/openttd-13.0-linux-generic-amd64.tar.xz"
+tar -xvf openttd-13.0-linux-generic-amd64.tar.xz --directory /home/openttd/gamefiles/
 
 ## Set entrypoint script to right user
 chmod +x /openttd.sh
