@@ -15,7 +15,7 @@ echo "deb http://security.ubuntu.com/ubuntu jammy-security main" >> /etc/apt/sou
 apt update -qq
 
 ## Install things we need
-$minimal_apt_get_install dumb-init wget unzip ca-certificates libfontconfig1 libfreetype6 libfluidsynth3 libicu-dev libpng16-16 liblzma-dev liblzo2-2 libsdl1.2debian libsdl2-2.0-0 > /dev/null 2>&1
+$minimal_apt_get_install dumb-init wget unzip ca-certificates libfontconfig1 libfreetype6 libfluidsynth3 libicu-dev libpng16-16 liblzma-dev liblzo2-2 libsdl1.2debian libsdl2-2.0-0 xz-utils > /dev/null 2>&1
 
 ## Create user
 adduser --disabled-password --uid 1000 --shell /bin/bash --gecos "" openttd
