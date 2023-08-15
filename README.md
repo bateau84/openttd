@@ -41,6 +41,15 @@ Its set up to not load any games by default (new game) and it can be run without
 However, if you want to save/load your games, mounting a .openttd folder is required.
 
     docker run -v /path/to/your/.openttd:/home/openttd/.openttd -p 3979:3979/tcp -p 3979:3979/udp bateau/openttd:latest
+    
+
+If you are trying to host a container on Windows, and your OpenTTD config filepath contains spaces, you can reference it like below:
+
+```
+"//c/Users/username/directory with space/OpenTTD:/home/openttd/.local/share/openttd/"
+```
+
+Your savegame filename must not contain any spaces.
 
 Set UID and GID of user in container to be the same as your user outside with seting env PUID and PGID.
 For example
