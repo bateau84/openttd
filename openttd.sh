@@ -1,6 +1,17 @@
 #!/bin/sh
 
-savepath="/home/openttd/.openttd/save"
+old_openttd_dir="/home/openttd/.openttd"
+new_openttd_dir="/home/openttd/.local/share/openttd"
+
+#check if new openttd profile dir exists
+if [ -d ${new_openttd_dir} ]; then
+  # if exists, set the new path
+  savepath="/home/openttd/.local/share/openttd/save"
+else
+  # if not, leave the old path
+  savepath="/home/openttd/.openttd/save"
+fi
+
 savegame="${savepath}/${savename}"
 LOADGAME_CHECK="${loadgame}x"
 loadgame=${loadgame:-'false'}
@@ -15,10 +26,17 @@ if [ ! "$(id -g ${USER})" -eq "$PGID" ]; then groupmod -o -g "$PGID" ${USER} ; f
 if [ "$(grep ${USER} /etc/passwd | cut -d':' -f6)" != "${PHOME}" ]; then
         if [ ! -d ${PHOME} ]; then
                 mkdir -p ${PHOME}
-                chown ${USER}:${USER} ${PHOME}
+                chown ${USER}:${USER} -R ${PHOME}
         fi
         usermod -m -d ${PHOME} ${USER}
 fi
+
+#create save folder and set permissions
+mkdir -p ${savepath}
+chown ${USER}:${USER} -R ${savepath}
+
+#fix home folder permissions
+chown ${USER}:${USER} -R ${PHOME}
 
 echo "
 -----------------------------------
@@ -38,7 +56,7 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
                         if [ -f  ${savegame} ]; then
                                 echo "We are loading a save game!"
                                 echo "Lets load ${savegame}"
-                                su -l openttd -c "/usr/games/openttd -D -g ${savegame} -x -d ${DEBUG}"
+                                su -l openttd -c "/usr/share/games/openttd/openttd -D -g ${savegame} -x -d ${DEBUG}"
                                 exit 0
                         else
                                 echo "${savegame} not found..."
@@ -47,7 +65,7 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
                 ;;
                 'false')
                         echo "Creating a new game."
-                        su -l openttd -c "/usr/games/openttd -D -x -d ${DEBUG}"
+                        su -l openttd -c "/usr/share/games/openttd/openttd -D -x -d ${DEBUG}"
                         exit 0
                 ;;
                 'last-autosave')
@@ -56,12 +74,12 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
 
 			if [ -r ${savegame} ]; then
 	                        echo "Loading ${savegame}"
-        	                su -l openttd -c "/usr/games/openttd -D -g ${savegame} -x -d ${DEBUG}"
+        	                su -l openttd -c "/usr/share/games/openttd/openttd -D -g ${savegame} -x -d ${DEBUG}"
                 	        exit 0
 			else
 				echo "${savegame} not found..."
 	                        echo "Creating a new game."
-	                        su -l openttd -c "/usr/games/openttd -D -x -d ${DEBUG}"
+	                        su -l openttd -c "/usr/share/games/openttd/openttd -D -x -d ${DEBUG}"
 	                        exit 0
 			fi
                 ;;
@@ -71,12 +89,12 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
 
 			if [ -r ${savegame} ]; then
 	                        echo "Loading ${savegame}"
-        	                su -l openttd -c "/usr/games/openttd -D -g ${savegame} -x -d ${DEBUG}"
+        	                su -l openttd -c "/usr/share/games/openttd/openttd -D -g ${savegame} -x -d ${DEBUG}"
                 	        exit 0
 			else
 				echo "${savegame} not found..."
 				echo "Creating a new game."
-                        	su -l openttd -c "/usr/games/openttd -D -x -d ${DEBUG}"
+                        	su -l openttd -c "/usr/share/games/openttd/openttd -D -x -d ${DEBUG}"
                         	exit 0
 			fi
                 ;;
@@ -87,6 +105,6 @@ if [ ${LOADGAME_CHECK} != "x" ]; then
         esac
 else
 	echo "\$loadgame (\"${loadgame}\") not set, starting new game"
-        su -l openttd -c "/usr/games/openttd -D -x"
+        su -l openttd -c "/usr/share/games/openttd/openttd -D -x"
         exit 0
 fi
