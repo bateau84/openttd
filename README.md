@@ -18,8 +18,8 @@ To set a new value to an enviroment variable use docker's `-e ` parameter (see h
 | savepath | "/home/openttd" | The path to which autosave wil save |
 | loadgame | `null` | load game has 4 settings. false, true, last-autosave and exit.<br>  - **false**: this will just start server and create a new game.<br>  - **true**: if true is set you also need to set savename. savename needs to be the name of the saved game file. This will load the given saved game.<br>  - **last-autosave**: This will load the last autosaved game located in <$savepath>/autosave folder.<br>  - **exit**: This will load the exit.sav file located in <$savepath>/autosave/. |
 | savename | `null` | Set this when allong with `loadgame=true` to the value of your save game file-name |
-| PUID | "911" | This is the ID of the user inside the container. If you mount in (-v </path/of/your/choosing>:</path/inside/container>) you would need for the user inside the container to have the same ID as your user outside (so that you can save files for example). |
-| PGID | "911" | Same thing here, except Group ID. Your user has a group, and it needs to map to the same ID inside the container. |
+| PUID | "1001" | This is the ID of the user inside the container. If you mount in (-v </path/of/your/choosing>:</path/inside/container>) you would need for the user inside the container to have the same ID as your user outside (so that you can save files for example). |
+| PGID | "1001" | Same thing here, except Group ID. Your user has a group, and it needs to map to the same ID inside the container. |
 | debug | `null` | Set debug things. see openttd for debug options |
 
 
@@ -54,7 +54,7 @@ Your savegame filename must not contain any spaces.
 Set UID and GID of user in container to be the same as your user outside with seting env PUID and PGID.
 For example
 
-    docker run -e PUID=1000 -e PGID=1000 -v /path/to/your/.openttd:/home/openttd/.openttd -p 3979:3979/tcp -p 3979:3979/udp bateau/openttd:latest
+    docker run -e PUID=1001 -e PGID=1001 -v /path/to/your/.openttd:/home/openttd/.openttd -p 3979:3979/tcp -p 3979:3979/udp bateau/openttd:latest
 
 For other save games use (/home/openttd/.openttd/save/ is appended to savename when passed to openttd command)
 

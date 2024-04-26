@@ -16,8 +16,8 @@ savegame="${savepath}/${savename}"
 LOADGAME_CHECK="${loadgame}x"
 loadgame=${loadgame:-'false'}
 
-PUID=${PUID:-911}
-PGID=${PGID:-911}
+PUID=${PUID:-1001}
+PGID=${PGID:-1001}
 PHOME=${PHOME:-"/home/openttd"}
 USER=${USER:-"openttd"}
 
