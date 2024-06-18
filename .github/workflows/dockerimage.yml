@@ -60,7 +60,7 @@ jobs:
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
       - name: Build and push ${{ matrix.version }} with latest tag
         if: needs.get_versions.outputs.latest == matrix.version
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           push: true
           pull: true
@@ -70,7 +70,7 @@ jobs:
             ${{ env.DOCKER_REPO_NAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ matrix.version }}
       - name: Build and push ${{ matrix.version }}
         if: needs.get_versions.outputs.latest != matrix.version
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           push: true
           pull: true
