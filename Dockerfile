@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 ARG OPENTTD_VERSION="13.4"
 ARG OPENGFX_VERSION="7.1"
@@ -6,11 +6,12 @@ ARG OPENGFX_VERSION="7.1"
 ADD prepare.sh /tmp/prepare.sh
 ADD cleanup.sh /tmp/cleanup.sh
 ADD buildconfig /tmp/buildconfig
-ADD --chown=1000:1000 openttd.sh /openttd.sh
+#ADD --chown=1000:1000 openttd.sh /openttd.sh
+ADD openttd.sh /openttd.sh
 
 RUN chmod +x /tmp/prepare.sh /tmp/cleanup.sh /openttd.sh
-RUN /tmp/prepare.sh \
-    && /tmp/cleanup.sh
+RUN /tmp/prepare.sh
+RUN /tmp/cleanup.sh
 
 VOLUME /home/openttd/.openttd
 
