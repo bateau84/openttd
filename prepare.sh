@@ -12,17 +12,17 @@ fi
 echo "deb http://security.ubuntu.com/ubuntu jammy-security main" >> /etc/apt/sources.list
 
 ## Update pkg repos
-apt update -qq
+apt-get update -qq
 
 ## Install things we need
 $minimal_apt_get_install dumb-init wget xz-utils unzip ca-certificates libfontconfig1 libfreetype6 libfluidsynth3 libicu-dev libpng16-16t64 liblzma-dev liblzo2-2 libsdl1.2debian libsdl2-2.0-0 # > /dev/null 2>&1
 
 ## Download and install openttd
-wget -q https://cdn.openttd.org/openttd-releases/${OPENTTD_VERSION}/openttd-${OPENTTD_VERSION}-linux-generic-amd64.tar.xz
-tar -xf openttd-${OPENTTD_VERSION}-linux-generic-amd64.tar.xz
-mkdir -p /usr/share/games/
-mv openttd-${OPENTTD_VERSION}-linux-generic-amd64 /usr/share/games/openttd
-rm openttd-${OPENTTD_VERSION}-linux-generic-amd64.tar.xz
+wget -q -O openttd.tar.xz "${OPENTTD_DOWNLOAD_LINK}"
+mkdir -p /usr/share/games/openttd
+tar -xf openttd.tar.xz -C /usr/share/games/openttd --strip-components=1
+rm openttd.tar.xz
+test -x /usr/share/games/openttd/openttd || { echo "openttd binary missing after extract" >&2; exit 1; }
 
 ## Download GFX and install
 mkdir -p /usr/share/games/openttd/baseset/

@@ -1,7 +1,8 @@
 FROM ubuntu:24.04
 
-ARG OPENTTD_VERSION="13.4"
-ARG OPENGFX_VERSION="7.1"
+ARG OPENTTD_VERSION="15.3"
+ARG OPENGFX_VERSION="8.0"
+ARG OPENTTD_DOWNLOAD_LINK="https://cdn.openttd.org/openttd-releases/${OPENTTD_VERSION}/openttd-${OPENTTD_VERSION}-linux-generic-amd64.tar.xz"
 
 ADD prepare.sh /tmp/prepare.sh
 ADD cleanup.sh /tmp/cleanup.sh
